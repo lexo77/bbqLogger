@@ -30,12 +30,6 @@ app.get('/', function(req, res) {
        
     console.log("GET!");
 
-    // open the MySQL connection
-    /*connection.connect(error => {
-      if (error) res.json({"code" : 503, "error": "database connection error"});
-      console.log("Successfully connected to the database.");
-    });
-    */
     connection.query("SELECT * FROM bbq1", (err, qres) => {
       if (err) {
         console.log("error: ", err);
@@ -43,14 +37,6 @@ app.get('/', function(req, res) {
         return;
       }
       
-      //close connection
-      /*connection.end(function(err) {
-        if (err) {
-          return console.log('error:' + err.message);
-        }
-        console.log('Close the database connection.');
-      });
-      */
       //return result
       console.log("values: ", qres);
       res.json({"code": 200, "values" : qres});
